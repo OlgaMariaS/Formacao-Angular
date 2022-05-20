@@ -1,0 +1,27 @@
+<section class="container">
+  <h1 class="titulo">Transferências</h1>
+<table class="tabela">
+  <thead class="tabela__cabecalho">
+    <th class="tabela__cabecalho__conteudo">Data</th>
+    <th class="tabela__cabecalho__conteudo">Valor</th>
+    <th class="tabela__cabecalho__conteudo">Destino</th>
+  </thead>
+<!-- se (!!) houver conteudo em evento transferencias, mostre se não NG.TEMPLATE  -->
+  <tbody *ngIf="!!transferencias?.length; else listaVazia">
+  <!-- puxa o valor da variavel valor e destino criada em app.component.ts -->
+    <tr class="tabela__linha" *ngFor="let transferencia of transferencias">
+      <td class="tabela__conteudo">{{ transferencia.data | date: "short" }}</td>
+      <td class="tabela__conteudo">{{ transferencia.valor | currency }}</td>
+      <td class="tabela__conteudo">{{ transferencia.destino }}</td>
+    </tr>
+  </tbody>
+</table>
+<ng-template  #listaVazia>
+  <p>Nenhum dado</p>
+</ng-template>
+</section>
+<!-- este __ das classes são classe do scss -->
+<!--  DATAPIPE: atribui padrão ao elemento, ex: date:"short" vem o padrão ao formato da data dd/mm/yy -->
+<!-- o ? significa que SE algo, faz x para mim, ex se houve valor em destino, mostra ele para mim -->
+<!-- () -> eventbind se abre com paranteses | $event traz o valor do EMITI que esta em nova-transferencia.component.ts -->
+
